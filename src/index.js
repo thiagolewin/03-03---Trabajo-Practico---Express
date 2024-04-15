@@ -3,6 +3,8 @@ import cors from "cors"
 import {sumar,restar,multiplicar,dividir} from "./modules/matematica.js"
 import {OMDBSearchPage, OMDBSearchComplete, OMDBGetByImdbID} from "./modules/OMBDWrapper.js"
 import Alumno from "./models/alumno.js";
+import ValidacionesHelper from './modules/validaciones-helper.js'
+const helper = new ValidacionesHelper();
 const app = express()
 const port = 3000
 let alumnosArray=[]; 
@@ -52,17 +54,17 @@ app.get("/matematica/dividir", (req, res) => {
 app.get("/ombd/searchbypage",async (req,res)=> {
     const {texto,pagina} = req.query
     let datos = await OMDBSearchPage(texto,pagina)
-    res.status(200).send("Datos:" + datos)
+    res.status(200).send("Datos:" + datos.datos)
 })
 app.get("/ombd/searchcomplete",async (req,res)=> {
-    const texto = req.query
+    const texto = helper.getStringOrDefault(req.query.texto,"hola")
     let datos = await OMDBSearchComplete(texto)
-    res.status(200).send("Datos:" + datos)
+    res.status(200).send("Datos:" + datos.datos)
 })
 app.get("/ombd/getbyomdbid",async (req,res)=> {
     const imdb = req.query
     let datos = await OMDBGetByImdbID(imdb)
-    res.status(200).send("Datos:" + datos)
+    res.status(200).send("Datos:" + datos.datos)
 })
 app.get("/alumnos",async (req,res)=> {
     

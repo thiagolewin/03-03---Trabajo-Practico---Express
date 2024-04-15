@@ -14,6 +14,7 @@ const OMDBSearchPage = async(searchText,page = 1)=>{
         returnObject.datos = apiResponse.data.Search
         returnObject.cantidadTotal = apiResponse.data.totalResults
         returnObject.respuesta = apiResponse.data.Response
+        return returnObject
     }
     catch(error){
     console.log(error)
@@ -33,6 +34,7 @@ const OMDBSearchPage = async(searchText,page = 1)=>{
         returnObject.datos = apiResponse.data.Search
         returnObject.cantidadTotal = apiResponse.data.totalResults
         returnObject.respuesta = apiResponse.data.Response
+        return returnObject
     }   
     catch(error){
     console.log(error)
@@ -52,6 +54,7 @@ const OMDBSearchPage = async(searchText,page = 1)=>{
         returnObject.datos = apiResponse.data.Search
         returnObject.cantidadTotal = apiResponse.data.totalResults
         returnObject.respuesta = apiResponse.data.Response
+        return returnObject
     }   
     catch(error){
     console.log(error)
